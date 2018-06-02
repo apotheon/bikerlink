@@ -13,5 +13,10 @@ RSpec.feature 'Home' do
     scenario 'explain the site' do
       expect(page).to have_text 'connecting riders online'
     end
+
+    scenario 'show login/signup links' do
+      expect(page).to have_link 'Sign In', href: '/bikers/sign_in'
+      expect(page).to have_link 'Sign Up', href: '/bikers/sign_up'
+    end
   end
 end

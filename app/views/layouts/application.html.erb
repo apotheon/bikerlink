@@ -10,6 +10,11 @@
 
   <h1>Biker Link</h1>
 
+  <%- if biker_signed_in? %>
+  <%- else %>
+    <%= render 'devise/shared/links' %>
+  <% end %>
+
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
