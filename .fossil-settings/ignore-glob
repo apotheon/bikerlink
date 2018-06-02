@@ -10,5 +10,6 @@ config/initializers/secret_token.rb
 log/*
 spec/controllers/*
 spec/helpers/home_helper_spec.rb
+spec/models/*
 spec/views/*
 tmp/*
