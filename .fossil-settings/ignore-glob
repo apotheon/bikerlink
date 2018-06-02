@@ -8,4 +8,6 @@
 config/database.yml
 config/initializers/secret_token.rb
 log/*
-q
+spec/controllers/*
+spec/views/*
+tmp/*
