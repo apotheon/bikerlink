@@ -4,7 +4,6 @@
 *.gch
 *fossil.marks
 *git.marks
-*test_directory_name
 config/database.yml
 config/initializers/secret_token.rb
 log/*
