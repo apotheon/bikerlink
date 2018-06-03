@@ -27,8 +27,9 @@ RSpec.feature 'Home' do
       end
 
       scenario 'show account links' do
-        expect(page).to have_link 'Sign Out', href: '/bikers/sign_out'
+        expect(page).to have_text @biker.email
         expect(page).to have_link 'Account Settings', href: '/bikers/edit'
+        expect(page).to have_link 'Sign Out', href: '/bikers/sign_out'
       end
     end
   end
