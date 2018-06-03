@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Biker Link</title>
-  <%= stylesheet_link_tag    "application", media: "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <%= render 'devise/shared/links' %>
+  <head>
+    <title>Biker Link</title>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
 
-  <h1>Biker Link</h1>
+  <body>
+    <h1>Biker Link</h1>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
-<%= yield %>
+    <div class="strip">
+      <div class="right">
+        <%= render 'devise/shared/links' %>
+      </div>
 
-</body>
+      <div> connecting riders online </div>
+    </div>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
 </html>

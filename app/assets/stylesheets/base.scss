@@ -1,8 +1,51 @@
 body {
+  margin: 0;
+  padding: 0;
   background: #210;
   color: #a98;
 }
 
+h1 {
+  margin: 0;
+  margin-top: 0;
+  padding: 0.3em;
+  padding-left: 0.6em;
+  background: #a98;
+  color: #210;
+  font-variant: small-caps;
+}
+
+.strip {
+  margin: 0;
+  padding: 1.3em;
+  padding-top: 0;
+
+  .right {
+    float: right;
+  }
+}
+
+.container {
+  border-top: 1px solid #a98;
+}
+
+.content {
+  margin: 3em;
+}
+
 a {
+  margin: 0.3em;
+  margin-right: 0;
+  border: 1px solid #89a;
+  padding: 0.3em;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+  background: #210;
   color: #89a;
+  text-decoration: none;
+}
+
+a:hover {
+  background: #89a;
+  color: #210;
 }
