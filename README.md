@@ -10,4 +10,4 @@ Rails 4.0.0
 
 ## Testing
 
-    $ be rspec
+    $ bundle exec rspec
