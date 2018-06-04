@@ -17,16 +17,13 @@ h1 {
 
 .strip {
   margin: 0;
+  border-bottom: 1px solid #a98;
   padding: 1.3em;
   padding-top: 0;
 
   .right {
     float: right;
   }
-}
-
-.container {
-  border-top: 1px solid #a98;
 }
 
 .content {
