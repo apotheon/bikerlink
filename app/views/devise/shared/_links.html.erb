@@ -1,6 +1,6 @@
 <%- unless controller_name == 'sessions' %>
   <%- if biker_signed_in? %>
-    <%= current_biker.email %>
+    <%= current_biker.username %>
     <%= link_to 'Account Settings', edit_biker_registration_path %>
     <%= link_to 'Sign Out', destroy_biker_session_path, method: :delete %>
   <%- else %>
