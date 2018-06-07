@@ -13,6 +13,17 @@ h1 {
   background: #a98;
   color: #210;
   font-variant: small-caps;
+
+  a {
+    background: #a98;
+    color: #210;
+    text-decoration: none;
+  }
+
+  a:hover {
+    background: #a98;
+    color: #248;
+  }
 }
 
 .strip {
@@ -32,7 +43,7 @@ h1 {
   font-size: 1.2em;
 }
 
-a {
+.strip a {
   margin: 0.3em;
   margin-right: 0;
   border: 1px solid #89a;
