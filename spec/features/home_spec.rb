@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Home' do
-  context 'when a user visits the home page' do
+  context 'when a visitor views the home page' do
     before :each do
       visit root_path
     end
@@ -32,5 +32,12 @@ RSpec.feature 'Home' do
         expect(page).to have_link 'Sign Out', href: '/bikers/sign_out'
       end
     end
+  end
+
+  scenario 'site title links to the home page' do
+    visit new_biker_registration_path
+
+    click_on 'Biker Link'
+    expect(page.current_path).to eq root_path
   end
 end

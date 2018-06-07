@@ -1,5 +1,8 @@
 Bikerlink::Application.routes.draw do
-  devise_for :bikers
+  devise_for :bikers, controllers: {
+    registrations: 'bikers/registrations'
+  }
+
   get 'home/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
