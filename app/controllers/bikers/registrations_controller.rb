@@ -4,6 +4,20 @@ class Bikers::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
+  def new
+    @biker = Biker.new
+  end
+
+  def create
+    @biker = Biker.new biker_params
+
+    if @biker.save!
+      redirect_to edit_biker_registration_path, success: "Fill in your profile!"
+    else
+      render 'new'
+    end
+  end
+
   # GET /resource/sign_up
   # def new
   #   super
@@ -59,4 +73,10 @@ class Bikers::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def biker_params
+    params.require(:biker).permit(
+      :username, :email, :password, :password_confirmation
+    )
+  end
 end
