@@ -4,8 +4,8 @@
 *.gch
 *fossil.marks
 *git.marks
+.env
 config/database.yml
-config/initializers/secret_token.rb
 log/*
 spec/controllers/*
 spec/helpers/home_helper_spec.rb
