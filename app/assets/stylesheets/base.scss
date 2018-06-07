@@ -43,19 +43,37 @@ h1 {
   font-size: 1.2em;
 }
 
-.strip a {
-  margin: 0.3em;
-  margin-right: 0;
-  border: 1px solid #89a;
+.strip {
+  a {
+    margin: 0.3em;
+    margin-right: 0;
+    border: 1px solid #89a;
+    padding: 0.3em;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    background: #210;
+    color: #89a;
+    text-decoration: none;
+  }
+
+  a:hover {
+    background: #89a;
+    color: #210;
+  }
+}
+
+div.actions input {
+  margin: 0;
+  border: 2px solid #754;
   padding: 0.3em;
   padding-right: 0.5em;
   padding-left: 0.5em;
-  background: #210;
-  color: #89a;
+  background: #a98;
+  color: #210;
   text-decoration: none;
+  font-size: 1em;
 }
 
-a:hover {
-  background: #89a;
-  color: #210;
+.field {
+  margin-bottom: 1em;
 }
