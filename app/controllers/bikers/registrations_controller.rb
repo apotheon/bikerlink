@@ -4,39 +4,41 @@ class Bikers::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
+  before_action :find_biker, only: [:edit, :update]
+
   def new
     @biker = Biker.new
   end
 
   def create
-    @biker = Biker.new biker_params
+    @biker = Biker.new reject_empty(biker_params)
 
-    if @biker.save!
-      redirect_to edit_biker_registration_path, success: "Fill in your profile!"
+    if @biker.save
+      redirect_to edit_biker_registration_path, success: 'Success!'
     else
       render 'new'
     end
   end
 
-  # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def update
+    # I'm not sure why Devise is fucking up so badly, but it's beginning
+    # to look like I will have to rewrite the entire fucking implementation
+    # of password change validation to make up for this shit.
 
-  # POST /resource
-  # def create
-  #   super
-  # end
+    biker_updates = reject_empty(biker_params)
 
-  # GET /resource/edit
-  # def edit
-  #   super
-  # end
+    if password_supplied(biker_updates) and password_mismatch(biker_updates)
+      render_alert 'Password change failed.', 'edit'
+    else
+      @biker.attributes = biker_updates
 
-  # PUT /resource
-  # def update
-  #   super
-  # end
+      if @biker.save
+        redirect_to root_path, notice: 'Account Updated'
+      else
+        render_alert @biker.errors.full_messages.to_sentence, 'edit'
+      end
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -74,9 +76,40 @@ class Bikers::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
+  private
+
+  def find_biker
+    @biker = Biker.find (params[:id] or current_biker.id)
+  end
+
+  def render_alert message, view='new'
+    flash[:alert] = message
+    render view
+  end
+
   def biker_params
     params.require(:biker).permit(
       :username, :email, :password, :password_confirmation
     )
+  end
+
+  def reject_empty params
+    curated = Hash.new
+
+    params.keys.each do |k|
+      unless params[k].empty?
+        curated[k] = params[k]
+      end
+    end
+
+    curated
+  end
+
+  def password_supplied params
+    params['password'] or params['password_confirmation']
+  end
+
+  def password_mismatch params
+    not params['password'].eql? params['password_confirmation']
   end
 end
