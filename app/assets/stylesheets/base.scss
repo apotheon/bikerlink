@@ -3,6 +3,7 @@ body {
   padding: 0;
   background: #210;
   color: #a98;
+  font-family: sans-serif;
 }
 
 h1 {
@@ -30,37 +31,49 @@ h1 {
   margin: 0;
   border-bottom: 1px solid #a98;
   padding: 1.3em;
-  padding-top: 0;
+  padding-top: 1em;
 
   .right {
     float: right;
     font-weight: bold;
+
+    a {
+      margin: 0.3em;
+      margin-right: 0;
+      border: 1px solid #89a;
+      padding: 0.3em;
+      padding-right: 0.5em;
+      padding-left: 0.5em;
+      background: #210;
+      color: #89a;
+      text-decoration: none;
+    }
+
+    a:hover {
+      background: #89a;
+      color: #210;
+    }
   }
+}
+
+.notice {
+  padding: 1em;
+  background: #89a;
+  color: #210;
+  font-weight: bold;
+}
+
+.alert {
+  padding: 1em;
+  background: #8a9;
+  color: #210;
+  font-weight: bold;
 }
 
 .content {
   margin: 3em;
   color: #ba9;
   font-size: 1.2em;
-}
-
-.strip {
-  a {
-    margin: 0.3em;
-    margin-right: 0;
-    border: 1px solid #89a;
-    padding: 0.3em;
-    padding-right: 0.5em;
-    padding-left: 0.5em;
-    background: #210;
-    color: #89a;
-    text-decoration: none;
-  }
-
-  a:hover {
-    background: #89a;
-    color: #210;
-  }
 }
 
 div.actions, form.button_to {
