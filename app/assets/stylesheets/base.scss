@@ -34,6 +34,7 @@ h1 {
 
   .right {
     float: right;
+    font-weight: bold;
   }
 }
 
@@ -62,16 +63,23 @@ h1 {
   }
 }
 
-div.actions input {
-  margin: 0;
-  border: 2px solid #754;
-  padding: 0.3em;
-  padding-right: 0.5em;
-  padding-left: 0.5em;
-  background: #a98;
-  color: #210;
-  text-decoration: none;
-  font-size: 1em;
+div.actions, form.button_to {
+  input {
+    margin: 0;
+    border: 2px solid #754;
+    padding: 0.3em;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    background: #a98;
+    color: #210;
+    text-decoration: none;
+    font-size: 1em;
+  }
+
+  input:hover {
+    background: #89a;
+    color: #210;
+  }
 }
 
 .field {
