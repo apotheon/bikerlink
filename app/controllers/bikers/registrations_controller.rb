@@ -79,7 +79,15 @@ class Bikers::RegistrationsController < Devise::RegistrationsController
   private
 
   def find_biker
-    @biker = Biker.find (params[:id] or current_biker.id)
+    @biker = if params[:id]
+      begin
+        Biker.find params[:id]
+      rescue
+        Biker.find_by_username(params[:id])
+      end
+    else
+      current_biker
+    end
   end
 
   def render_alert message, view='new'
