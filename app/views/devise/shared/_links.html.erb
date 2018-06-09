@@ -1,14 +1,12 @@
-<%- unless controller_name == 'sessions' %>
-  <%- if biker_signed_in? %>
-    <%= current_biker.username %>
-    <%= link_to 'Account Settings', edit_biker_registration_path %>
-    <%= link_to 'Sign Out', destroy_biker_session_path, method: :delete %>
-  <%- else %>
-    <%= link_to "Sign In", new_session_path(resource_name) %>
-    <%= link_to "Sign Up", new_registration_path(resource_name) %>
-    <%= link_to "Forgot your password?", new_password_path(resource_name) %>
-  <% end -%>
-<% end %>
+<%- if biker_signed_in? %>
+  <%= current_biker.username %>
+  <%= link_to 'Account Settings', edit_biker_registration_path %>
+  <%= link_to 'Sign Out', destroy_biker_session_path, method: :delete %>
+<%- else %>
+  <%= link_to "Sign In", new_session_path(resource_name) %>
+  <%= link_to "Sign Up", new_registration_path(resource_name) %>
+  <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+<% end -%>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
   <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
