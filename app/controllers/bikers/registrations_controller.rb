@@ -97,7 +97,7 @@ class Bikers::RegistrationsController < Devise::RegistrationsController
 
   def biker_params
     params.require(:biker).permit(
-      :username, :email, :password, :password_confirmation
+      :username, :email, :description, :password, :password_confirmation
     )
   end
 
