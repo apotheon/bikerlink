@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+require 'rbconfig'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '< 5.0.0'
@@ -34,6 +35,9 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-bundler'
   gem 'guard-rails', require: false
+  if RbConfig::CONFIG['target_os'].match /(?i-mx:bsd|dragonfly)/
+    gem 'rb-kqueue', '>= 0.2'
+  end
 end
 
 group :development, :test do
