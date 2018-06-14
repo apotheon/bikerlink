@@ -8,5 +8,9 @@ FactoryBot.define do
       about bikes more than I ride them, but I do ride them, and I
       even tinker on them at times.  I'm definitely on IRC, though.
     }.squish
+
+    trait :admin do
+      admin true
+    end
   end
 end
