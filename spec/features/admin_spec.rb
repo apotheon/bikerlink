@@ -27,10 +27,11 @@ RSpec.feature 'Admin' do
       end
 
       scenario 'show biker information table' do
-        @a = [@admin.username, @admin.active, @admin.admin.to_s]
-        @b = [@biker.username, @biker.active, @biker.admin.to_s]
-        expect(page).to have_text @a.join ' '
-        expect(page).to have_text @b.join ' '
+        datums = [:username, :active, :admin]
+        admin_data = a_to_s @admin, datums
+        biker_data = a_to_s @biker, datums
+        expect(page).to have_text admin_data
+        expect(page).to have_text biker_data
       end
     end
   end
