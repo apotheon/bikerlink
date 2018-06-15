@@ -1,15 +1,14 @@
 class BikersController < ApplicationController
-  before_action :find_biker, only: [:show]
-
   def index
     if current_biker.admin
-      @bikers = Biker.all
+      @bikers = Biker.all.sort_by {|b| b.username }
     else
       redirect_to root_path, alert: 'You are not authorized for that action.'
     end
   end
 
   def show
+    find_biker
   end
 
   private
