@@ -11,6 +11,8 @@ FactoryBot.define do
 
     trait :admin do
       admin true
+      email 'admin@example.com'
+      username 'admin'
     end
   end
 end
