@@ -13,6 +13,7 @@ Bikerlink::Application.routes.draw do
 
   resource :bikers, except: [:show]
   get 'biker/:id', to: 'bikers#show', as: :biker
+  get 'bikers', to: 'bikers#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
