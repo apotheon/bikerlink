@@ -10,6 +10,11 @@ RSpec.feature 'Admin' do
     scenario 'test positive for admin privileges' do
       expect(@admin.admin?).to be_truthy
     end
+
+    scenario 'expect root path to show admin name' do
+      visit root_path
+      expect(page).to have_text 'admin'
+    end
   end
 
   context 'with signed-in non-admin biker' do
