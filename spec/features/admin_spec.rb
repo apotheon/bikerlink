@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature 'Admin' do
+  before :each do
+    @biker = create :biker
+    sign_in @biker
+  end
+
   context 'with signed-in admin' do
     before :each do
       @admin = create :biker, :admin
@@ -15,14 +20,19 @@ RSpec.feature 'Admin' do
       visit root_path
       expect(page).to have_text 'admin'
     end
+
+    context 'visiting bikers index' do
+      before :each do
+        visit bikers_path
+      end
+
+      scenario 'show bikers by name' do
+        expect(page).to have_text 'exemplar'
+      end
+    end
   end
 
   context 'with signed-in non-admin biker' do
-    before :each do
-      @biker = create :biker
-      sign_in @biker
-    end
-
     scenario 'test negative for admin privileges' do
       expect(@biker.admin?).to be_falsey
     end
