@@ -26,8 +26,11 @@ RSpec.feature 'Admin' do
         visit bikers_path
       end
 
-      scenario 'show bikers by name' do
-        expect(page).to have_text 'exemplar'
+      scenario 'show biker information table' do
+        @a = [@admin.username, @admin.active, @admin.admin.to_s]
+        @b = [@biker.username, @biker.active, @biker.admin.to_s]
+        expect(page).to have_text @a.join ' '
+        expect(page).to have_text @b.join ' '
       end
     end
   end
@@ -44,6 +47,7 @@ RSpec.feature 'Admin' do
 
       scenario 'rejects biker authorization to see index' do
         expect(page).to have_text 'You are not authorized for that action.'
+        expect(page).to_not have_text 'admin'
       end
     end
   end
