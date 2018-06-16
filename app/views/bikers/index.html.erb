@@ -25,6 +25,7 @@
 
           <div>
             <% if biker.admin %>
+              <%= link_to 'Demote', biker_demote_path(biker), method: :patch %>
             <% else %>
               <%= link_to 'Promote', biker_promote_path(biker), method: :patch %>
             <% end %>

@@ -1,5 +1,7 @@
 class BikersController < ApplicationController
-  before_action :find_biker, only: [:activate, :deactivate, :promote, :show]
+  before_action :find_biker, only: [
+    :activate, :deactivate, :demote, :promote, :show
+  ]
 
   def index
     if current_biker.admin
@@ -23,6 +25,10 @@ class BikersController < ApplicationController
 
   def promote
     update :admin, true
+  end
+
+  def demote
+    update :admin, false
   end
 
   private
