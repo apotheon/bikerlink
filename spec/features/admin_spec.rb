@@ -37,8 +37,11 @@ RSpec.feature 'Admin' do
       scenario 'activating a biker' do
         click_on 'Activate'
         expect(@biker.reload.active).to be_truthy
-        biker_data = a_to_s @biker.reload, @datums
-        expect(page).to have_text biker_data
+      end
+
+      scenario 'deactivating a biker' do
+        click_on 'Deactivate'
+        expect(@admin.reload.active).to be_falsey
       end
     end
   end
