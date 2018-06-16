@@ -16,6 +16,7 @@
         <td><%= biker.admin %></td>
         <td>
           <% if biker.active %>
+            <%= link_to 'Deactivate', biker_deactivate_path(biker), method: :patch %>
           <% else %>
             <%= link_to 'Activate', biker_activate_path(biker), method: :patch %>
           <% end %>

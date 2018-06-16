@@ -13,6 +13,7 @@ Bikerlink::Application.routes.draw do
 
   resources :bikers do
     patch :activate
+    patch :deactivate
   end
 
   # Example of regular route:
