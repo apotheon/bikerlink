@@ -15,6 +15,7 @@ Bikerlink::Application.routes.draw do
     patch :activate
     patch :deactivate
     patch :promote
+    patch :demote
   end
 
   # Example of regular route:
