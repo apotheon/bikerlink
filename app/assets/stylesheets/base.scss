@@ -104,3 +104,38 @@ div.actions, form.button_to {
 .field {
   margin-bottom: 1em;
 }
+
+table {
+  background: #a98;
+
+  td {
+    font-size: 1.3em;
+  }
+
+  th, a {
+    text-align: center;
+  }
+
+  th, td {
+    padding: 0.5em;
+    background: #210;
+
+    a {
+      display: block;
+      margin: 0.3em;
+      border: 1px solid #89a;
+      padding: 0.1em;
+      padding-right: 0.5em;
+      padding-left: 0.5em;
+      background: #210;
+      color: #89a;
+      text-decoration: none;
+      font-size: 0.7em;
+    }
+
+    a:hover {
+      background: #89a;
+      color: #210;
+    }
+  }
+}
