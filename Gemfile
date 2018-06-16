@@ -35,9 +35,6 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-bundler'
   gem 'guard-rails', require: false
-  if RbConfig::CONFIG['target_os'].match /(?i-mx:bsd|dragonfly)/
-    gem 'rb-kqueue', '>= 0.2'
-  end
 end
 
 group :development, :test do
