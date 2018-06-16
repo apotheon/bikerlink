@@ -1,5 +1,5 @@
 class BikersController < ApplicationController
-  before_action :find_biker, only: [:activate, :deactivate, :show]
+  before_action :find_biker, only: [:activate, :deactivate, :promote, :show]
 
   def index
     if current_biker.admin
@@ -24,6 +24,14 @@ class BikersController < ApplicationController
   def deactivate
     if current_biker.admin
       @biker.attributes = { active: false }
+      @biker.save
+      redirect_to bikers_path
+    end
+  end
+
+  def promote
+    if current_biker.admin
+      @biker.attributes = { admin: true }
       @biker.save
       redirect_to bikers_path
     end

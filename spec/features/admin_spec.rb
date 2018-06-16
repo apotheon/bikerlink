@@ -43,6 +43,11 @@ RSpec.feature 'Admin' do
         click_on 'Deactivate'
         expect(@admin.reload.active).to be_falsey
       end
+
+      scenario 'promoting a biker to admin' do
+        click_on 'Promote'
+        expect(@biker.reload.admin).to be_truthy
+      end
     end
   end
 
