@@ -14,27 +14,15 @@ class BikersController < ApplicationController
   end
 
   def activate
-    if current_biker.admin
-      @biker.attributes = { active: true }
-      @biker.save
-      redirect_to bikers_path
-    end
+    update :active, true
   end
 
   def deactivate
-    if current_biker.admin
-      @biker.attributes = { active: false }
-      @biker.save
-      redirect_to bikers_path
-    end
+    update :active, false
   end
 
   def promote
-    if current_biker.admin
-      @biker.attributes = { admin: true }
-      @biker.save
-      redirect_to bikers_path
-    end
+    update :admin, true
   end
 
   private
@@ -45,6 +33,14 @@ class BikersController < ApplicationController
 
   def biker_id
     params[:biker_id] or params[:id]
+  end
+
+  def update attribute, value=true
+    if current_biker.admin
+      @biker.attributes = { attribute => value }
+      @biker.save
+      redirect_to bikers_path
+    end
   end
 
   def find_biker
