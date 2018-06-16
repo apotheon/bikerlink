@@ -24,13 +24,20 @@ RSpec.feature 'Admin' do
     context 'visiting bikers index' do
       before :each do
         visit bikers_path
+        @datums = [:username, :active, :admin]
       end
 
       scenario 'show biker information table' do
-        datums = [:username, :active, :admin]
-        admin_data = a_to_s @admin, datums
-        biker_data = a_to_s @biker, datums
+        admin_data = a_to_s @admin, @datums
+        biker_data = a_to_s @biker, @datums
         expect(page).to have_text admin_data
+        expect(page).to have_text biker_data
+      end
+
+      scenario 'activating a biker' do
+        click_on 'Activate'
+        expect(@biker.reload.active).to be_truthy
+        biker_data = a_to_s @biker.reload, @datums
         expect(page).to have_text biker_data
       end
     end

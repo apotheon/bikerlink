@@ -10,6 +10,7 @@ FactoryBot.define do
     }.squish
 
     trait :admin do
+      active true
       admin true
       email 'admin@example.com'
       username 'admin'
