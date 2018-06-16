@@ -4,6 +4,7 @@
       <th>Username</th>
       <th>Active?</th>
       <th>Admin?</th>
+      <th>Update</th>
     </tr>
   </thead>
 
@@ -13,6 +14,12 @@
         <td><%= biker.username %></td>
         <td><%= biker.active %></td>
         <td><%= biker.admin %></td>
+        <td>
+          <% if biker.active %>
+          <% else %>
+            <%= link_to 'Activate', biker_activate_path(biker), method: :patch %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
