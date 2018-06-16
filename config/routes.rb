@@ -11,9 +11,7 @@ Bikerlink::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root to: 'home#index'
 
-  resource :bikers, except: [:show]
-  get 'biker/:id', to: 'bikers#show', as: :biker
-  get 'bikers', to: 'bikers#index'
+  resources :bikers
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
