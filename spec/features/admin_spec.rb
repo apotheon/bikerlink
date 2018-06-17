@@ -21,13 +21,23 @@ RSpec.feature 'Admin' do
       expect(page).to have_text 'admin'
     end
 
+    context 'visiting admin profile' do
+      before :each do
+        visit biker_path @admin.username
+      end
+
+      scenario 'shows link to biker index' do
+        expect(page).to have_link 'Biker List', href: bikers_path
+      end
+    end
+
     context 'visiting bikers index' do
       before :each do
         visit bikers_path
         @datums = [:username, :active, :admin]
       end
 
-      scenario 'show biker information table' do
+      scenario 'shows biker information table' do
         admin_data = a_to_s @admin, @datums
         biker_data = a_to_s @biker, @datums
         expect(page).to have_text admin_data
