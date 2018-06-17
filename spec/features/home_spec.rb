@@ -8,10 +8,11 @@ RSpec.feature 'Home' do
 
     scenario 'identify the site' do
       expect(page).to have_text 'Biker Link'
+      expect(page).to have_text 'connecting riders online'
     end
 
     scenario 'explain the site' do
-      expect(page).to have_text 'connecting riders online'
+      expect(page).to have_text 'Welcome to Biker Link.'
     end
 
     scenario 'show sign in/up links' do
