@@ -46,10 +46,12 @@ class BikersController < ApplicationController
   end
 
   def update attribute, value=true
-    if current_biker.admin
+    if biker_admin
       @biker.attributes = { attribute => value }
       @biker.save
       redirect_to bikers_path
+    else
+      redirect_to root_path, alert: 'Not Authorized'
     end
   end
 
@@ -63,6 +65,10 @@ class BikersController < ApplicationController
     else
       current_biker
     end
+  end
+
+  def biker_admin
+    current_biker and current_biker.admin
   end
 
   def biker_authorized

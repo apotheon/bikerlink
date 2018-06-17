@@ -53,5 +53,11 @@ RSpec.feature 'Profile' do
       visit biker_path @biker
       expect(page).to have_text %Q{No Active Biker: "#{@biker.username}"}
     end
+
+    scenario 'denies visitor permission to update biker' do
+      page.driver.submit :patch, (biker_activate_path @biker), nil
+      expect(page).to have_text 'Not Authorized'
+      expect(@biker.active).to be_falsey
+    end
   end
 end
