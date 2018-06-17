@@ -167,6 +167,10 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     rdoc (6.0.4)
+    redcarpet (3.4.0)
+    redrug (0.3.0)
+      redcarpet
+      versionize
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -217,6 +221,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.11)
       execjs (>= 0.3.0, < 3)
+    versionize (1.0.1)
     warden (1.2.7)
       rack (>= 1.0)
     xpath (3.1.0)
@@ -239,6 +244,7 @@ DEPENDENCIES
   jquery-rails
   pg (~> 0.20.0)
   rails (< 5.0.0)
+  redrug
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
