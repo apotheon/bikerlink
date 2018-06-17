@@ -46,6 +46,8 @@ RSpec.feature 'Profile' do
       scenario 'shows inactive profile to biker' do
         visit biker_path @biker
         expect(page).to have_text @biker.description
+        expect(page).to have_text 'This account is inactive.'
+        expect(page).to have_text 'Ask "apotheon" in IRC to activate it.'
       end
     end
 
