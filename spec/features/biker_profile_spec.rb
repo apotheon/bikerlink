@@ -53,6 +53,12 @@ RSpec.feature 'Profile' do
         expect(page).to have_text 'This account is inactive.'
         expect(page).to have_text 'Ask "apotheon" in IRC to activate it.'
       end
+
+      scenario 'provides link to profile' do
+        visit root_path
+        click_on @biker.username
+        expect(page.current_path).to eq biker_path(@biker)
+      end
     end
 
     scenario 'denies visitor access to biker profile' do
