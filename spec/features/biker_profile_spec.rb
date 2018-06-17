@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature 'Profile' do
+  before :each do
+    @alert_inactive = 'No Active Biker:'
+  end
+
   context 'with an active biker' do
     before :each do
       @active = create :biker, :active
@@ -63,7 +67,7 @@ RSpec.feature 'Profile' do
 
     scenario 'denies visitor access to biker profile' do
       visit biker_path @biker
-      expect(page).to have_text %Q{No Active Biker: "#{@biker.username}"}
+      expect(page).to have_text %Q{#{@alert_inactive} "#{@biker.username}"}
     end
 
     scenario 'denies visitor permission to update biker' do
@@ -71,5 +75,11 @@ RSpec.feature 'Profile' do
       expect(page).to have_text 'Not Authorized'
       expect(@biker.active).to be_falsey
     end
+  end
+
+  scenario 'gracefully handles attempt to view nonexistent profiles' do
+    bad_username = 'foobar'
+    visit biker_path bad_username
+    expect(page).to have_text %Q{#{@alert_inactive} "#{bad_username}"}
   end
 end
