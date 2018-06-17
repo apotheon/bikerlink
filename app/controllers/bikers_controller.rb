@@ -1,4 +1,6 @@
 class BikersController < ApplicationController
+  include BikersHelper
+
   before_action :find_biker, only: [
     :activate, :deactivate, :demote, :promote, :show
   ]
@@ -14,13 +16,14 @@ class BikersController < ApplicationController
   def show
     find_biker
 
-    if @biker.active
-      render :show
-    elsif biker_authorized
-      flash[:alert] = inactive_alert
+    if @biker and active_or_authorized
+      unless @biker.active
+        flash[:alert] = alert_inactive
+      end
+
       render :show
     else
-      redirect_to root_path, alert: %Q{No Active Biker: "#{@biker.username}"}
+      redirect_to root_path, alert: alert_not_active(username_or_id)
     end
   end
 
@@ -48,6 +51,10 @@ class BikersController < ApplicationController
 
   def biker_id
     params[:biker_id] or params[:id]
+  end
+
+  def username_or_id
+    @biker ? @biker.username : biker_id
   end
 
   def update attribute, value=true
@@ -80,11 +87,11 @@ class BikersController < ApplicationController
     current_biker and (current_biker.admin or current_biker.eql? @biker)
   end
 
-  def inactive_alert
+  def alert_inactive
     'This account is inactive. Ask "apotheon" in IRC to activate it.'
   end
 
   def active_or_authorized
-    @biker.active or biker_authorized
+    @biker and (@biker.active or biker_authorized)
   end
 end
