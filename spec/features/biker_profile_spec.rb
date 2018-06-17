@@ -57,7 +57,7 @@ RSpec.feature 'Profile' do
       scenario 'provides link to profile' do
         visit root_path
         click_on @biker.username
-        expect(page.current_path).to eq biker_path(@biker)
+        expect(page.current_path).to eq biker_path(@biker.username)
       end
     end
 
