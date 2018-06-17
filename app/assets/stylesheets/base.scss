@@ -74,11 +74,11 @@ h1 {
   color: #ba9;
   font-size: 1.2em;
 
-  a {
+  p a {
     color: #89a;
   }
 
-  a:hover {
+  p a:hover {
     text-decoration: underline overline;
   }
 }
@@ -87,6 +87,7 @@ div.signature {
   text-align: right;
 
   a {
+    color: #89a;
     text-decoration: none;
     font-style: italic;
   }
@@ -157,6 +158,7 @@ table {
     a:hover {
       background: #89a;
       color: #210;
+      text-decoration: none;
     }
   }
 }
