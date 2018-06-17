@@ -73,6 +73,27 @@ h1 {
   margin: 3em;
   color: #ba9;
   font-size: 1.2em;
+
+  a {
+    color: #89a;
+  }
+
+  a:hover {
+    text-decoration: underline overline;
+  }
+}
+
+div.signature {
+  text-align: right;
+
+  a {
+    text-decoration: none;
+    font-style: italic;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
 }
 
 input, textarea {
