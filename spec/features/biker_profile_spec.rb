@@ -38,13 +38,13 @@ RSpec.feature 'Profile' do
       scenario 'allows profile edits' do
         visit edit_biker_registration_path
 
-        new_description = 'I do not have much to say.'
+        new_description = '#### I do not have much to say.'
 
         fill_in 'Description', with: new_description
         click_button 'Update'
 
         visit biker_path @biker
-        expect(page).to have_text new_description
+        expect(page).to have_css 'h4', text: 'I do not have much to say.'
       end
 
       scenario 'shows inactive profile to biker' do
