@@ -11,7 +11,7 @@
   <tbody>
     <% @bikers.each do |biker| %>
       <tr>
-        <td><%= biker.username %></td>
+        <td><%= link_to biker.username, biker_path(biker.username) %></td>
         <td><%= biker.active %></td>
         <td><%= biker.admin %></td>
         <td>
