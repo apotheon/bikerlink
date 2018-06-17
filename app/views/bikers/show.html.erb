@@ -1,6 +1,6 @@
 <h3><%= @biker.username %></h3>
 
-<% if current_biker.admin %>
+<% if current_biker and current_biker.admin %>
   <p><%= link_to 'Biker List', bikers_path %></p>
 <% end %>
 
