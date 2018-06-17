@@ -44,6 +44,12 @@ RSpec.feature 'Admin' do
         expect(page).to have_text biker_data
       end
 
+      scenario 'shows links to user profiles' do
+        [@admin.username, @biker.username].each do |name|
+          expect(page).to have_link name, href: biker_path(name)
+        end
+      end
+
       scenario 'activating a biker' do
         click_on 'Activate'
         expect(@biker.reload.active).to be_truthy
