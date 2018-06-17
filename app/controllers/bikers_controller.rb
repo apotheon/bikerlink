@@ -27,6 +27,11 @@ class BikersController < ApplicationController
     end
   end
 
+  def search
+    @biker = search_biker
+    redirect_to biker_path @biker
+  end
+
   def activate
     update :active, true
   end
@@ -51,6 +56,10 @@ class BikersController < ApplicationController
 
   def biker_id
     params[:biker_id] or params[:id]
+  end
+
+  def search_biker
+    Biker.find_by_username params[:biker][:biker_id]
   end
 
   def username_or_id

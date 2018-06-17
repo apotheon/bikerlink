@@ -105,7 +105,7 @@ input, textarea {
 }
 
 div.actions, form.button_to {
-  input {
+  .submit {
     margin: 0;
     border: 2px solid #754;
     padding: 0.3em;
@@ -117,9 +117,24 @@ div.actions, form.button_to {
     font-size: 1em;
   }
 
-  input:hover {
+  input:hover.submit {
     background: #89a;
     color: #210;
+  }
+}
+
+div.oneliner {
+  .ltext {
+    font-size: 1.3em;
+  }
+
+  input {
+    font-size: 1.2em;
+  }
+
+  div.actions {
+    display: inline;
+    font-size: 1em;
   }
 }
 
