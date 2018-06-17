@@ -63,6 +63,15 @@ RSpec.feature 'Profile' do
         click_on @biker.username
         expect(page.current_path).to eq biker_path(@biker.username)
       end
+
+      scenario 'allow biker to search for profiles by username' do
+        @active = create :biker, :active
+        visit root_path
+
+        fill_in 'Username', with: @active.username
+        click_button 'Find Biker'
+        expect(page).to have_text @active.description
+      end
     end
 
     scenario 'denies visitor access to biker profile' do
@@ -81,5 +90,10 @@ RSpec.feature 'Profile' do
     bad_username = 'foobar'
     visit biker_path bad_username
     expect(page).to have_text %Q{#{@alert_inactive} "#{bad_username}"}
+  end
+
+  scenario 'disallows unregistered visitor find-by-username' do
+    visit root_path
+    expect(page).to_not have_button 'Find Biker'
   end
 end

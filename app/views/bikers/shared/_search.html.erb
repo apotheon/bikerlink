@@ -1,0 +1,10 @@
+<div class='oneliner'>
+  <%= form_for :biker, url: biker_search_path(:bikers) do |f| %>
+    <%= f.label :biker_id, 'Username', class: :ltext %>:
+    <%= f.text_field :biker_id %>
+
+    <div class='actions'>
+      <%= f.submit 'Find Biker', class: :submit %>
+    </div>
+  <% end %>
+</div>
