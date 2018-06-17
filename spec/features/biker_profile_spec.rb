@@ -18,6 +18,10 @@ RSpec.feature 'Profile' do
       scenario 'displays profile description' do
         expect(page).to have_text @active.description
       end
+
+      scenario 'does not show inactive account alert' do
+        expect(page).to_not have_text 'This account is inactive.'
+      end
     end
   end
 

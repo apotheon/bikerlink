@@ -68,7 +68,6 @@ RSpec.feature 'Admin' do
 
       scenario 'rejects biker authorization to see index' do
         expect(page).to have_text 'You are not authorized for that action.'
-        expect(page).to_not have_text 'admin'
       end
     end
   end

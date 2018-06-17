@@ -14,7 +14,12 @@ class BikersController < ApplicationController
   def show
     find_biker
 
-    unless active_or_authorized
+    if @biker.active
+      render :show
+    elsif biker_authorized
+      flash[:alert] = inactive_alert
+      render :show
+    else
       redirect_to root_path, alert: %Q{No Active Biker: "#{@biker.username}"}
     end
   end
@@ -73,6 +78,10 @@ class BikersController < ApplicationController
 
   def biker_authorized
     current_biker and (current_biker.admin or current_biker.eql? @biker)
+  end
+
+  def inactive_alert
+    'This account is inactive. Ask "apotheon" in IRC to activate it.'
   end
 
   def active_or_authorized
