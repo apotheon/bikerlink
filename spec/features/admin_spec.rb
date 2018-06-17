@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.feature 'Admin' do
   before :each do
+    @admin = create :biker, :admin
     @biker = create :biker
     sign_in @biker
   end
 
   context 'with signed-in admin' do
     before :each do
-      @admin = create :biker, :admin
       sign_in @admin
     end
 
@@ -61,14 +61,17 @@ RSpec.feature 'Admin' do
       expect(@biker.admin?).to be_falsey
     end
 
-    context 'visiting bikers index' do
-      before :each do
-        visit bikers_path
-      end
+    scenario 'rejects biker authorization to see index' do
+      visit bikers_path
+      expect(page).to have_text 'You are not authorized for that action.'
+    end
 
-      scenario 'rejects biker authorization to see index' do
-        expect(page).to have_text 'You are not authorized for that action.'
-      end
+    scenario 'acts like there is no admin for inactive admin profile' do
+      @admin.attributes = { active: false }
+      @admin.save
+
+      visit biker_path @admin.username
+      expect(page).to have_text 'No Active Biker: "admin"'
     end
   end
 end
