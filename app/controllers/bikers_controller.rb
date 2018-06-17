@@ -29,7 +29,11 @@ class BikersController < ApplicationController
 
   def search
     @biker = search_biker
-    redirect_to biker_path @biker
+    if @biker
+      redirect_to biker_path search_biker
+    else
+      redirect_to root_path, alert: alert_not_active(username_or_id)
+    end
   end
 
   def activate
