@@ -13,6 +13,10 @@ class BikersController < ApplicationController
 
   def show
     find_biker
+
+    unless active_or_authorized
+      redirect_to root_path, alert: %Q{No Active Biker: "#{@biker.username}"}
+    end
   end
 
   def activate
@@ -59,5 +63,13 @@ class BikersController < ApplicationController
     else
       current_biker
     end
+  end
+
+  def biker_authorized
+    current_biker and (current_biker.admin or current_biker.eql? @biker)
+  end
+
+  def active_or_authorized
+    @biker.active or biker_authorized
   end
 end
