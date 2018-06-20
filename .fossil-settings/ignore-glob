@@ -4,6 +4,7 @@
 config/database.yml
 log/*
 spec/controllers/*
+spec/helpers/bikers_helper_spec.rb
 spec/helpers/home_helper_spec.rb
 spec/models/*
 spec/views/*
