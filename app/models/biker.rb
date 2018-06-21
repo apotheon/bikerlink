@@ -5,4 +5,6 @@ class Biker < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates_uniqueness_of :username
+
+  has_many :bikes, foreign_key: :owner_id
 end
