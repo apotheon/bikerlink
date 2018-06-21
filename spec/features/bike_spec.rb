@@ -15,8 +15,8 @@ RSpec.feature 'Bike' do
 
     scenario 'owner has several bikes' do
       expect(@vroom.owner.bikes.size).to eq 2
-      expect(@vroom.owner.bikes.first.name).to eq 'Vroom Vroom'
-      expect(@vroom.owner.bikes.last.name).to eq 'Sheila'
+      expect(@vroom.owner.bikes.first.name).to eq @vroom.name
+      expect(@vroom.owner.bikes.last.name).to eq @sheila.name
     end
   end
 end
