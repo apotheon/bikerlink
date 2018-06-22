@@ -5,7 +5,7 @@
 <% end %>
 
 <% if current_biker and @biker.username.eql? current_biker.username %>
-  <p><%= link_to 'Add Bike', new_bikes_path %></p>
+  <p><%= link_to 'Add Bike', new_bike_path %></p>
 <% end %>
 
 <div><%= markdown @biker.description %></div>
