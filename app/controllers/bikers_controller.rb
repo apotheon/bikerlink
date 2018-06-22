@@ -6,7 +6,7 @@ class BikersController < ApplicationController
   ]
 
   def index
-    if current_biker
+    if active_or_authorized
       @bikers = Biker.all.sort_by {|b| b.username }
     else
       redirect_to root_path, alert: 'You are not authorized for that action.'
@@ -14,10 +14,8 @@ class BikersController < ApplicationController
   end
 
   def show
-    find_biker
-
-    if @biker and active_or_authorized
-      unless @biker.active
+    if biker_active or admin_or_authorized
+      unless biker_active
         flash[:alert] = alert_inactive
       end
 
@@ -29,6 +27,7 @@ class BikersController < ApplicationController
 
   def search
     @biker = search_biker
+
     if @biker
       redirect_to biker_path search_biker
     else
@@ -71,7 +70,7 @@ class BikersController < ApplicationController
   end
 
   def update attribute, value=true
-    if biker_admin
+    if current_admin
       @biker.attributes = { attribute => value }
       @biker.save
       redirect_to bikers_path
@@ -92,19 +91,31 @@ class BikersController < ApplicationController
     end
   end
 
-  def biker_admin
+  def biker_active
+    @biker and @biker.active?
+  end
+
+  def current_admin
     current_biker and current_biker.admin
   end
 
-  def biker_authorized
-    current_biker and (current_biker.admin or current_biker.eql? @biker)
+  def authorized
+    current_biker and (current_admin or current_biker.eql? @biker)
   end
 
   def alert_inactive
     'This account is inactive. Ask "apotheon" in IRC to activate it.'
   end
 
+  def active_or_admin
+    current_biker and (current_biker.active or current_admin)
+  end
+
   def active_or_authorized
-    @biker and (@biker.active or biker_authorized)
+    active_or_admin or authorized
+  end
+
+  def admin_or_authorized
+    authorized or current_admin
   end
 end

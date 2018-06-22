@@ -16,7 +16,7 @@ RSpec.feature 'Profile' do
       end
 
       scenario 'identifies profile by username' do
-        expect(page).to have_text 'exemplar'
+        expect(page).to have_text 'active'
       end
 
       scenario 'displays profile description' do
