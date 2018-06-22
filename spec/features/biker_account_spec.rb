@@ -64,6 +64,8 @@ RSpec.feature 'Account' do
 
       expect(page).to have_text 'Account Updated'
 
+      sign_out @biker
+
       visit new_biker_session_path
 
       fill_in 'Email', with: @biker.email
@@ -84,9 +86,10 @@ RSpec.feature 'Account' do
       visit bikers_path
       expect(page).to have_text "#{@biker.username}\n#{@vroom.name}"
       expect(page).to_not have_text "#{@admin.username}\n#{@sheila.name}"
-      expect(page).to_not have_text 'Active?'
-      expect(page).to_not have_text 'Admin?'
-      expect(page).to_not have_text 'Update'
+
+      ['Active?', 'Admin?', 'Update'].each do |colname|
+        expect(page).to_not have_text colname
+      end
     end
   end
 end
