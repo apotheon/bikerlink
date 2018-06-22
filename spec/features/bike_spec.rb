@@ -7,20 +7,20 @@ RSpec.feature 'Bike' do
     expect(@bike.owner.username).to eq @biker.username
   end
 
-  context 'with existing bikes' do
+  context 'with an owner of multiple bikes' do
     before :each do
       @vroom = create :bike
       @sheila = create :bike, :sheila, owner_id: @vroom.owner_id
     end
 
-    scenario 'owner has several bikes' do
+    scenario 'yields several bikes for owner' do
       expect(@vroom.owner.bikes.size).to eq 2
       expect(@vroom.owner.bikes.first.name).to eq @vroom.name
       expect(@vroom.owner.bikes.last.name).to eq @sheila.name
     end
   end
 
-  context 'with an existing user' do
+  context 'with an existing biker' do
     before :each do
       @owner = create :biker
       sign_in @owner
@@ -32,7 +32,7 @@ RSpec.feature 'Bike' do
       expect(page.current_path).to eql new_bike_path
     end
 
-    scenario 'lets owner create a bike' do
+    scenario 'lets biker create a bike' do
       bike_name = 'Gristle'
       visit new_bike_path
       expect(page).to have_text 'Add Bike'
@@ -40,7 +40,7 @@ RSpec.feature 'Bike' do
       fill_in 'Name', with: bike_name
       click_button 'Submit'
 
-      expect(page.current_path).to eql edit_bike_path @owner.bikes.first.name
+      expect(page.current_path).to eql edit_bike_path @owner.bikes.first
       expect(@owner.bikes.first.name).to eql bike_name
     end
   end
