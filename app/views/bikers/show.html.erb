@@ -1,11 +1,15 @@
-<h3><%= @biker.username %></h3>
-
 <% if current_biker and current_biker.admin %>
   <p><%= link_to 'Biker List', bikers_path %></p>
+<% end %>
+
+<h3><%= @biker.username %></h3>
+
+<div><%= markdown @biker.description %></div>
+
+<% @biker.bikes.sort_by {|b| b.name }.each do |bike| %>
+  <h4><%= link_to bike.name, bike_path(bike) %></h4>
 <% end %>
 
 <% if current_biker and @biker.username.eql? current_biker.username %>
   <p><%= link_to 'Add Bike', new_bike_path %></p>
 <% end %>
-
-<div><%= markdown @biker.description %></div>

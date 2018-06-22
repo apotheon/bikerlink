@@ -1,1 +1,7 @@
-<h2><%= @bike.name %></h2>
+<h3><%= @bike.name %></h3>
+
+<div><%= markdown @bike.description %></div>
+
+<% if current_biker and @bike.owner.username.eql? current_biker.username %>
+  <p><%= link_to "Edit #{@bike.name}", edit_bike_path(@bike) %></p>
+<% end %>
