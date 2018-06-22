@@ -7,7 +7,7 @@ RSpec.feature 'Account' do
       visit new_biker_registration_path
     end
 
-    scenario 'create biker account' do
+    scenario 'creating biker account' do
       expect(Biker.first).to be_nil
 
       fill_in 'Username', with: @biker.username
@@ -29,7 +29,7 @@ RSpec.feature 'Account' do
       sign_in @biker
     end
 
-    scenario 'change username' do
+    scenario 'changing username' do
       visit edit_biker_registration_path
 
       fill_in 'Username', with: @new_username
@@ -38,7 +38,7 @@ RSpec.feature 'Account' do
       expect(@biker.reload.username).to eql @new_username
     end
 
-    scenario 'fail to change password' do
+    scenario 'failing to change password' do
       visit edit_biker_registration_path
 
       fill_in 'Password', with: @new_password
@@ -55,7 +55,7 @@ RSpec.feature 'Account' do
       expect(page).to have_text 'Password change failed.'
     end
 
-    scenario 'change password' do
+    scenario 'changing password' do
       visit edit_biker_registration_path
 
       fill_in 'Password', with: @new_password
