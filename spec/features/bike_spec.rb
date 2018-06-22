@@ -18,6 +18,12 @@ RSpec.feature 'Bike' do
       expect(@vroom.owner.bikes.first.name).to eq @vroom.name
       expect(@vroom.owner.bikes.last.name).to eq @sheila.name
     end
+
+    scenario 'allows owner to edit a bike' do
+      visit edit_bike_path @vroom
+
+      fill_in 'Name', with: 'VroomVroom'
+    end
   end
 
   context 'with an existing biker' do
