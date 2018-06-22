@@ -4,7 +4,6 @@ RSpec.feature 'Admin' do
   before :each do
     @admin = create :biker, :admin
     @biker = create :biker
-    sign_in @biker
   end
 
   context 'with signed-in admin' do
@@ -73,13 +72,12 @@ RSpec.feature 'Admin' do
   end
 
   context 'with signed-in non-admin biker' do
-    scenario 'test negative for admin privileges' do
-      expect(@biker.admin?).to be_falsey
+    before :each do
+      sign_in @biker
     end
 
-    scenario 'rejects biker authorization to see index' do
-      visit bikers_path
-      expect(page).to have_text 'You are not authorized for that action.'
+    scenario 'test negative for admin privileges' do
+      expect(@biker.admin?).to be_falsey
     end
 
     scenario 'acts like there is no admin for inactive admin profile' do
@@ -88,6 +86,13 @@ RSpec.feature 'Admin' do
 
       visit biker_path @admin.username
       expect(page).to have_text 'No Active Biker: "admin"'
+    end
+  end
+
+  context 'with signed-out visitor' do
+    scenario 'rejects biker authorization to see index' do
+      visit bikers_path
+      expect(page).to have_text 'You are not authorized for that action.'
     end
   end
 end

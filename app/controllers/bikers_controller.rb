@@ -6,7 +6,7 @@ class BikersController < ApplicationController
   ]
 
   def index
-    if biker_admin
+    if current_biker
       @bikers = Biker.all.sort_by {|b| b.username }
     else
       redirect_to root_path, alert: 'You are not authorized for that action.'
