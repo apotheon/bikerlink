@@ -19,4 +19,23 @@ RSpec.feature 'Bike' do
       expect(@vroom.owner.bikes.last.name).to eq @sheila.name
     end
   end
+
+  context 'with an existing user' do
+    before :each do
+      @owner = create :biker
+      sign_in @owner
+    end
+
+    scenario 'owner creates a bike' do
+      bike_name = 'Gristle'
+      visit new_bikes_path
+      expect(page).to have_text 'Add Bike'
+
+      fill_in 'Name', with: bike_name
+      click_button 'Submit'
+
+      expect(page.current_path).to eql edit_bikes_path @owner.bikes.first.name
+      expect(@owner.bikes.first.name).to eql bike_name
+    end
+  end
 end
