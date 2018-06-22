@@ -19,7 +19,7 @@ Bikerlink::Application.routes.draw do
     post :search
   end
 
-  resource :bikes
+  resources :bikes
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

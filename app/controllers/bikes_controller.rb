@@ -11,7 +11,7 @@ class BikesController < ApplicationController
     @bike = current_biker.bikes.build bike_params
 
     if @bike.save
-      redirect_to edit_bikes_path @bike.name
+      redirect_to edit_bike_path @bike.name
     else
       render home_path, alert: 'Failed To Add Bike'
     end
@@ -24,6 +24,6 @@ class BikesController < ApplicationController
   end
 
   def find_bike
-    @bike = Bike.find_by_name(params[:format])
+    @bike = Bike.find_by_name(params[:id])
   end
 end
