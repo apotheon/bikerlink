@@ -20,9 +20,38 @@ RSpec.feature 'Bike' do
     end
 
     scenario 'allows owner to edit a bike' do
+      new_name = 'VroomVroom'
+      new_desc = 'This bike is so fast the Vrooms collided.'
       visit edit_bike_path @vroom
 
-      fill_in 'Name', with: 'VroomVroom'
+      fill_in 'Name', with: new_name
+      fill_in 'Description', with: new_desc
+      click_on 'Submit'
+
+      expect(page.current_path).to eq bike_path @vroom
+      expect(page).to have_text new_name
+      expect(page).to have_text new_desc
+    end
+
+    scenario 'shows owner link to edit bike from bike page' do
+      sign_in @sheila.owner
+      visit bike_path @sheila
+
+      click_on "Edit #{@sheila.name}"
+      expect(page.current_path).to eq edit_bike_path @sheila
+    end
+
+    scenario 'links to bikes from biker page' do
+      @vroom.owner.attributes = { active: true }
+      @vroom.owner.save
+
+      visit biker_path @vroom.owner.reload
+      click_on @vroom.name
+      expect(page.current_path).to eq bike_path @vroom
+
+      visit biker_path @sheila.owner.reload
+      click_on @sheila.name
+      expect(page.current_path).to eq bike_path @sheila
     end
   end
 
