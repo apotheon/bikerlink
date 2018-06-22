@@ -3,9 +3,11 @@
     <tr>
       <th>Username</th>
       <td>Bikes</td>
-      <th>Active?</th>
-      <th>Admin?</th>
-      <th>Update</th>
+      <% if current_biker.admin? %>
+        <th>Active?</th>
+        <th>Admin?</th>
+        <th>Update</th>
+      <% end %>
     </tr>
   </thead>
 
@@ -22,25 +24,28 @@
             </ul>
           <% end %>
         </td>
-        <td><%= biker.active %></td>
-        <td><%= biker.admin %></td>
-        <td>
-          <div>
-            <% if biker.active %>
-              <%= link_to 'Deactivate', biker_deactivate_path(biker), method: :patch %>
-            <% else %>
-              <%= link_to 'Activate', biker_activate_path(biker), method: :patch %>
-            <% end %>
-          </div>
 
-          <div>
-            <% if biker.admin %>
-              <%= link_to 'Demote', biker_demote_path(biker), method: :patch %>
-            <% else %>
-              <%= link_to 'Promote', biker_promote_path(biker), method: :patch %>
-            <% end %>
-          </div>
-        </td>
+        <% if current_biker.admin? %>
+          <td><%= biker.active %></td>
+          <td><%= biker.admin %></td>
+          <td>
+            <div>
+              <% if biker.active %>
+                <%= link_to 'Deactivate', biker_deactivate_path(biker), method: :patch %>
+              <% else %>
+                <%= link_to 'Activate', biker_activate_path(biker), method: :patch %>
+              <% end %>
+            </div>
+
+            <div>
+              <% if biker.admin %>
+                <%= link_to 'Demote', biker_demote_path(biker), method: :patch %>
+              <% else %>
+                <%= link_to 'Promote', biker_promote_path(biker), method: :patch %>
+              <% end %>
+            </div>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
