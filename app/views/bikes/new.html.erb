@@ -1,12 +1,3 @@
 <h1>Add Bike</h1>
 
-<%= form_for @bike do |f| %>
-  <div class="field">
-    <%= f.label :name %></br>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="actions">
-    <%= f.button 'Submit' %>
-  </div>
-<% end %>
+<%= render 'bikes/shared/form' %>
