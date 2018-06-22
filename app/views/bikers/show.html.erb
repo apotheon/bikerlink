@@ -7,7 +7,7 @@
 <div><%= markdown @biker.description %></div>
 
 <% @biker.bikes.sort_by {|b| b.name }.each do |bike| %>
-  <h4><%= link_to bike.name, bike_path(bike) %></h4>
+  <h3><%= link_to bike.name, bike_path(bike) %></h3>
 <% end %>
 
 <% if current_biker and @biker.username.eql? current_biker.username %>
