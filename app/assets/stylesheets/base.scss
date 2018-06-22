@@ -187,4 +187,14 @@ table {
       text-decoration: none;
     }
   }
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style-position: outside;
+      list-style-type: none;
+    }
+  }
 }
