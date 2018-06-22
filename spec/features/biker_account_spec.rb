@@ -81,6 +81,9 @@ RSpec.feature 'Account' do
       visit bikers_path
       expect(page).to have_text "#{@biker.username}\n#{@vroom.name}"
       expect(page).to_not have_text "#{@admin.username}\n#{@sheila.name}"
+      expect(page).to_not have_text 'Active?'
+      expect(page).to_not have_text 'Admin?'
+      expect(page).to_not have_text 'Update'
     end
   end
 end
