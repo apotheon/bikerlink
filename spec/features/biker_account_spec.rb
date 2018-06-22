@@ -72,5 +72,15 @@ RSpec.feature 'Account' do
 
       expect(page).to have_text @biker.username
     end
+
+    scenario 'viewing biker list' do
+      @vroom = create :bike, owner: @biker
+      @sheila = create :bike, owner: @admin
+      @admin = create :biker, :admin
+
+      visit bikers_path
+      expect(page).to have_text "#{@biker.username}\n#{@vroom.name}"
+      expect(page).to_not have_text "#{@admin.username}\n#{@sheila.name}"
+    end
   end
 end

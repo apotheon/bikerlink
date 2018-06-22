@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>Username</th>
+      <td>Bikes</td>
       <th>Active?</th>
       <th>Admin?</th>
       <th>Update</th>
@@ -12,6 +13,15 @@
     <% @bikers.each do |biker| %>
       <tr>
         <td><%= link_to biker.username, biker_path(biker.username) %></td>
+        <td>
+          <% if biker.bikes.size > 0 %>
+            <ul>
+              <% biker.bikes.each do |bike| %>
+                <li><%= link_to bike.name, bike_path(bike) %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </td>
         <td><%= biker.active %></td>
         <td><%= biker.admin %></td>
         <td>
