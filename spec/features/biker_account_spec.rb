@@ -74,6 +74,9 @@ RSpec.feature 'Account' do
     end
 
     scenario 'viewing biker list' do
+      @biker.attributes = { active: true }
+      @biker.save
+
       @vroom = create :bike, owner: @biker
       @sheila = create :bike, owner: @admin
       @admin = create :biker, :admin
