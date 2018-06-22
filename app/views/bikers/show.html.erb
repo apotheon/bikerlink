@@ -4,4 +4,8 @@
   <p><%= link_to 'Biker List', bikers_path %></p>
 <% end %>
 
+<% if current_biker and @biker.username.eql? current_biker.username %>
+  <p><%= link_to 'Add Bike', new_bikes_path %></p>
+<% end %>
+
 <div><%= markdown @biker.description %></div>

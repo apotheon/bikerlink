@@ -26,6 +26,12 @@ RSpec.feature 'Bike' do
       sign_in @owner
     end
 
+    scenario 'give owner a link to add a bike' do
+      visit biker_path @owner
+      click_on 'Add Bike'
+      expect(page.current_path).to eql new_bikes_path
+    end
+
     scenario 'owner creates a bike' do
       bike_name = 'Gristle'
       visit new_bikes_path
