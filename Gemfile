@@ -59,3 +59,4 @@ end
 
 gem 'devise'
 gem 'redrug'
+gem 'carrierwave-postgresql'
