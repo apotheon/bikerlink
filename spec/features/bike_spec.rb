@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.feature 'Bike' do
   scenario 'identify one owner for a bike' do
-    @biker = create :biker
-    @bike = create :bike, owner_id: @biker.id
-    expect(@bike.owner.username).to eq @biker.username
+    biker = create :biker
+    bike = create :bike, owner_id: biker.id
+    expect(bike.owner.username).to eq biker.username
   end
 
   context 'with an owner of multiple bikes' do
