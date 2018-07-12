@@ -1,7 +1,6 @@
 *fossil.marks
 *git.marks
 .env
-config/database.yml
 log/*
 spec/controllers/*
 spec/helpers/bikers_helper_spec.rb
