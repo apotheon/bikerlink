@@ -34,7 +34,7 @@ class BikesController < ApplicationController
   private
 
   def bike_params
-    params.require(:bike).permit :name, :description
+    params.require(:bike).permit :name, :description, :bikepic
   end
 
   def find_bike
