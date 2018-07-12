@@ -1,5 +1,7 @@
 <h3><%= @bike.name %></h3>
 
+<div><%= image_tag @bike.bikepic.url %></div>
+
 <div><%= markdown @bike.description %></div>
 
 <% if current_biker and @bike.owner.username.eql? current_biker.username %>

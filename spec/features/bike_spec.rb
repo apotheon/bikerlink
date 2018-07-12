@@ -57,6 +57,8 @@ RSpec.feature 'Bike' do
 
   context 'with an existing biker' do
     before :each do
+      @bikename = 'Gristle'
+      @img = 'gristle_34_embed.jpg'
       @owner = create :biker
       sign_in @owner
     end
@@ -67,16 +69,30 @@ RSpec.feature 'Bike' do
       expect(page.current_path).to eql new_bike_path
     end
 
-    scenario 'lets biker create a bike' do
-      bike_name = 'Gristle'
-      visit new_bike_path
-      expect(page).to have_text 'Add Bike'
+    context 'when visiting bike creation page' do
+      before do
+        visit new_bike_path
+      end
 
-      fill_in 'Name', with: bike_name
-      click_button 'Submit'
+      scenario 'shows appropriate page content' do
+        expect(page).to have_text 'Add Bike'
+      end
 
-      expect(page.current_path).to eql edit_bike_path @owner.bikes.first
-      expect(@owner.bikes.first.name).to eql bike_name
+      scenario 'lets biker create a bike without image' do
+        fill_in 'Name', with: @bikename
+        click_button 'Submit'
+
+        expect(page.current_path).to eql edit_bike_path @owner.bikes.first
+        expect(@owner.reload.bikes.first.name).to eql @bikename
+      end
+
+      scenario 'lets biker create a bike with image' do
+        fill_in 'Name', with: @bikename
+        attach_file 'Bike Pic', fixture_file(@img)
+        click_button 'Submit'
+
+        visit bike_path @owner.reload.bikes.first
+      end
     end
   end
 end
