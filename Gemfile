@@ -60,3 +60,5 @@ end
 gem 'devise'
 gem 'redrug'
 gem 'carrierwave-postgresql'
+
+gem "puma", "~> 3.11"
