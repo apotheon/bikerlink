@@ -9,14 +9,14 @@
     <%= f.text_area :description, autocomplete: :description, size: '80x15' %>
   </div>
 
-  <% if @bike.bikepic.url %>
-    <div><%= image_tag @bike.bikepic.url %></div>
-  <% else %>
+  <!-- % if @bike.bikepic.url % -->
+    <div><!-- %= image_tag @bike.bikepic.url % --></div>
+  <!-- % else % -->
     <div class="field">
-      <%= f.label :bikepic, 'Bike Pic' %><br />
-      <%= f.file_field :bikepic %>
+      <!-- %= f.label :bikepic, 'Bike Pic' % --><br />
+      <!-- %= f.file_field :bikepic % -->
     </div>
-  <% end %>
+  <!-- % end % -->
 
   <div class="actions">
     <%= f.submit 'Submit', class: :submit %>
