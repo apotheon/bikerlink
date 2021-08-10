@@ -2,6 +2,11 @@
 
 a place to link bikers together on the internet
 
+## Warning
+
+This is old, and unmaintained.  It is not even suitable for use as an example
+application at this point.
+
 ## Versions
 
 Ruby 2.3.5
