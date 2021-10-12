@@ -60,4 +60,4 @@ end
 gem 'devise'
 gem 'redrug'
 
-gem "puma", "~> 3.11"
+gem "puma", "~> 5.5"
